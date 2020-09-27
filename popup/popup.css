@@ -1,0 +1,42 @@
+html,
+body {
+    width: 200px;
+    font-family: "Courier New";
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+.margin-bottom10 {
+    margin-bottom: 10px;
+}
+
+.container {
+    text-align: center;
+    padding: 15px;
+}
+
+.title {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.button {
+    display: inline-block;
+    width: 100px;
+    border-radius: 15px;
+    color: #ffffff;
+    font-size: 15px;
+    background: #3498db;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    cursor: pointer;
+    user-select: none;  
+  }
+  
+  .button:hover {
+    background: #3cb0fd;
+    text-decoration: none;
+  }

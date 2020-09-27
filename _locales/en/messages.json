@@ -1,0 +1,13 @@
+{
+    "pick-group": {
+        "message": "Download group",
+        "description": "Download all images in the group"
+    },
+    "pick-single": {
+        "message": "Download image",
+        "description": "Download single picked image"
+    },
+    "image-picker": {
+        "message": "Image picker"
+    }
+}

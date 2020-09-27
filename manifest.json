@@ -1,0 +1,40 @@
+{
+    "manifest_version": 2,
+    "name": "Picker",
+    "version": "1.0",
+    "default_locale": "en",
+    "description": "Images picker",
+    "homepage_url": "https://github.com/jacksonfaller",
+    "icons": {
+        "48": "icons/icon.svg"
+    },
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "{9eab03f4-0baf-46b2-9272-601fdabc8919}"
+        }
+    },
+
+    "permissions": ["tabs", "activeTab", "downloads", "storage", "menus"],
+
+    "browser_action": {
+        "default_icon": "icons/icon.svg",
+        "default_title": "Picker",
+        "default_popup": "popup/popup.html"
+    },
+
+    "background": {
+        "scripts": ["options/default-options.js", "background.js"]
+    },
+
+    "options_ui": {
+        "page": "options/options.html",
+        "browser_style": true
+    },
+
+    "content_scripts": [
+        {
+            "all_frames": true,
+            "matches": ["<all_urls>"]
+        }
+    ]
+}

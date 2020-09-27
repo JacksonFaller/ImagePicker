@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <style>
+            form {
+                padding: 10px 0;
+            }
+            form > div {
+                margin-bottom: 10px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <form>
+            <div>
+                <label>Default download folder</label>
+                <input type="text" id="defaultDownloadFolder" />
+            </div>
+
+            <div>
+                <label>Use incrementing numbers as files' names</label>
+                <input type="checkbox" id="useIncremetNames" />
+            </div>
+
+            <button type="submit">Save</button>
+            <button type="button" id="reset">Reset</button>
+        </form>
+        <script src="options.js"></script>
+    </body>
+</html>
