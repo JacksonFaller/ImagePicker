@@ -37,7 +37,7 @@ async function menusClick(info, tab) {
         if (info.srcUrl) {
             downloadPicked({ elements: [info.srcUrl] });
         } else {
-            alert("Couldn't acquire url of the image");
+            showAlert("Couldn't acquire url of the image");
         }
     } else {
         await loadPicker(tab.id);
@@ -64,7 +64,7 @@ async function startPicker(single) {
     browser.tabs.sendMessage(tabId, { action: "activate", single });
 }
 
-function downloadPicked(message) {
+async function downloadPicked(message) {
     if (!message.downloadFolder) {
         message.downloadFolder = "";
     } else if (message.downloadFolder[message.downloadFolder.length - 1] !== "/") {
@@ -75,13 +75,25 @@ function downloadPicked(message) {
         ? (_, i) => `${message.downloadFolder}${i}`
         : (image) => `${message.downloadFolder}${formatDownloadUrl(image)}`;
 
-    message.elements.forEach((image, i) => {
-        const filePath = getFilePath(image, i);
-        browser.downloads.download({
-            url: image,
-            saveAs: false,
-            filename: filePath,
-        });
+    await Promise.all(
+        message.elements.map((image, i) => {
+            const filePath = getFilePath(image, i);
+            return browser.downloads.download({
+                url: image,
+                saveAs: false,
+                filename: filePath,
+            });
+        })
+    );
+    showAlert("Download complete!");
+}
+
+function showAlert(message) {
+    const tabId = (await browser.tabs.query({ currentWindow: true, active: true }))[0].id;
+    await browser.tabs.executeScript(tabId, { file: "/alert.js" });
+    browser.tabs.sendMessage(tabId, {
+        action: "alert",
+        text: message,
     });
 }
 

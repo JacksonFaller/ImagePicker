@@ -106,6 +106,7 @@ function sendForDownload(elements, map) {
     if (downloadFolder) {
         browser.runtime.sendMessage({
             from: "picker",
+            action: "download-picked",
             downloadFolder,
             elements: map(Array.from(elements)),
         });
